@@ -54,7 +54,7 @@ while True:
             print("Student Found")
             print(f"Name: {student['name']} | Age: {student['age']} | Course: {student['course']}")
             found = True
-            break
+            
 
     if not found:
         print("Student Not Found")
