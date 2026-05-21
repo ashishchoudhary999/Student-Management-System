@@ -1,1 +1,1 @@
-[{"name": "Ashish", "age": "21", "course": "a"}, {"name": "ash", "age": "20", "course": "s"}, {"name": "ad", "age": "21", "course": "sd"}]
+[{"name": "Ashish", "age": "21", "course": "a"}, {"name": "ash", "age": "20", "course": "s"}]

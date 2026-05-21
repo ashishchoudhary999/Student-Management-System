@@ -10,7 +10,8 @@ while True:
  print("1. Add Student")
  print("2. View Students")
  print("3. Search Student")
- print("4. Exit")
+ print("4. Delete Student")
+ print("5. Exit")
 
  try:
   choice = int(input("Enter your choices: "))
@@ -54,14 +55,27 @@ while True:
             print("Student Found")
             print(f"Name: {student['name']} | Age: {student['age']} | Course: {student['course']}")
             found = True
-            
-
     if not found:
         print("Student Not Found")
 
  elif choice == 4:
+   name = input("Enter student name: ")
+   found = False
+   for student in students:
+    if student["name"].strip().lower() == name.strip().lower():
+     students.remove(student)
+     print("Student Deleted Successfully")
+     with open("students.txt", "w") as file:
+       json.dump(students, file)
+     found = True
+     break
+   if not found:
+       print("Student Not Found")
+       
+ elif choice == 5:
     print("Exiting...")
     break
+ 
  else:
     print("Invalid choice")
     
