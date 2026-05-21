@@ -1,4 +1,11 @@
+import json
+import os
 students = []
+
+if os.path.exists("students.txt"):
+  with open("students.txt", "r") as file:
+    students = json.load(file)
+
 while True: 
  print("1. Add Student")
  print("2. View Students")
@@ -23,10 +30,20 @@ while True:
    }
 
    students.append(student)
+
+   # Save to file
+   with open("students.txt", "w") as file:
+     json.dump(students,file)
+
    print("Students Added Successfully")
+
  elif choice == 2:
-    for student in students:
-      print(student)    
+    if len(students) == 0:
+      print("No students found")
+    else:
+      for student in students:
+        print(f"Name: {student['name']} | Age: {student['age']} | course: {student['course']}")
+
  elif choice == 3:
    name = input("Enter Student name: ")
 
@@ -41,6 +58,7 @@ while True:
      
      if not found:
        print("Student Not Found") 
+       
  elif choice == 4:
     print("Exiting...")
     break
