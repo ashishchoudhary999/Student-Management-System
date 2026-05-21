@@ -45,20 +45,20 @@ while True:
         print(f"Name: {student['name']} | Age: {student['age']} | course: {student['course']}")
 
  elif choice == 3:
-   name = input("Enter Student name: ")
+    name = input("Enter student name: ").strip().lower()
 
-   found = False
+    found = False
 
-   for student in students:
-     if student["name"] == name:
-       print("Student Found")
-       print(student)
-       found = True
-       break
-     
-     if not found:
-       print("Student Not Found") 
-       
+    for student in students:
+        if name in student["name"].strip().lower():
+            print("Student Found")
+            print(f"Name: {student['name']} | Age: {student['age']} | Course: {student['course']}")
+            found = True
+            break
+
+    if not found:
+        print("Student Not Found")
+
  elif choice == 4:
     print("Exiting...")
     break
