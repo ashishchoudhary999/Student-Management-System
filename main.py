@@ -72,15 +72,20 @@ while True:
  elif choice == 3:
     name = input("Enter student name: ").strip().lower()
 
-    found = False
+    cursor.execute(
+      
+    "SELECT * FROM students WHERE name LIKE ?",
+    ('%' + name + '%',)
+)
 
-    for student in students:
-        if name in student["name"].strip().lower():
+    results = cursor.fetchall()
+
+    if len(results) == 0:
+     print("Student Not Found")
+    else:
+        for student in results:
             print("Student Found")
-            print(f"Name: {student['name']} | Age: {student['age']} | Course: {student['course']}")
-            found = True
-    if not found:
-        print("Student Not Found")
+            print(f"Name: {student[1]} | Age: {student[2]} | Course: {student[3]}")
 
  elif choice == 4:
    name = input("Enter student name: ")
