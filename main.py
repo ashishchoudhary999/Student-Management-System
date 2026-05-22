@@ -1,5 +1,21 @@
 import json
 import os
+import sqlite3
+
+conn = sqlite3.connect("students.db")
+cursor = conn.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS students (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER,
+    course TEXT
+)
+""")
+
+conn.commit()
+
 students = []
 
 if os.path.exists("students.txt"):
@@ -24,6 +40,12 @@ while True:
    age = input("Enter age: ")
    course = input("Enter course: ")
 
+   cursor.execute(
+        "INSERT INTO students (name, age, course) VALUES (?, ?, ?)",
+        (name, age, course)
+   )
+   conn.commit()
+
    student = {
      "name": name,
      "age": age,
@@ -39,11 +61,13 @@ while True:
    print("Students Added Successfully")
 
  elif choice == 2:
+    cursor.execute("SELECT * FROM students")
+    students = cursor.fetchall()
     if len(students) == 0:
       print("No students found")
     else:
       for student in students:
-        print(f"Name: {student['name']} | Age: {student['age']} | course: {student['course']}")
+        print(f"Name: {student[1]} | Age: {student[2]} | course: {student[3]}")
 
  elif choice == 3:
     name = input("Enter student name: ").strip().lower()
