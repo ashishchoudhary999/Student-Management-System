@@ -1,1 +1,0 @@
-[[1, "Ashish", 2, "vd"], {"name": "asjkbd", "age": "21", "course": "as"}]
