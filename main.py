@@ -1,5 +1,3 @@
-import json
-import os
 import sqlite3
 
 conn = sqlite3.connect("students.db")
@@ -15,12 +13,6 @@ CREATE TABLE IF NOT EXISTS students (
 """)
 
 conn.commit()
-
-students = []
-
-if os.path.exists("students.txt"):
-  with open("students.txt", "r") as file:
-    students = json.load(file)
 
 while True: 
  print("1. Add Student")
@@ -45,19 +37,6 @@ while True:
         (name, age, course)
    )
    conn.commit()
-
-   student = {
-     "name": name,
-     "age": age,
-     "course": course
-   }
-
-   students.append(student)
-
-   # Save to file
-   with open("students.txt", "w") as file:
-     json.dump(students,file)
-
    print("Students Added Successfully")
 
  elif choice == 2:
@@ -89,17 +68,16 @@ while True:
 
  elif choice == 4:
    name = input("Enter student name: ")
-   found = False
-   for student in students:
-    if student["name"].strip().lower() == name.strip().lower():
-     students.remove(student)
-     print("Student Deleted Successfully")
-     with open("students.txt", "w") as file:
-       json.dump(students, file)
-     found = True
-     break
-   if not found:
-       print("Student Not Found")
+   cursor.execute(
+     "DELETE FROM students WHERE name = ?",
+     (name,)
+   )
+   conn.commit()
+   if cursor.rowcount > 0:
+        print("succes")
+   else:
+     print(" not found")
+  
        
  elif choice == 5:
     print("Exiting...")
