@@ -1,26 +1,33 @@
-# Student Management System
+# Student Management System API
 
-A simple console-based Student Management System built using Python and SQLite.  
-This project performs full CRUD (Create, Read, Update, Delete) operations for managing student records.
+A backend Student Management System built using FastAPI and SQLite.  
+This project provides full CRUD (Create, Read, Update, Delete) operations through REST APIs for managing student records.
 
 ---
 
 ## Features
 
-- Add Student
-- View Students
+- Add Students
+- View All Students
 - Search Students
 - Update Student Details
 - Delete Students
+- REST API Development
 - SQLite Database Integration
-- Modular Project Structure
+- FastAPI Backend
+- Interactive Swagger Documentation
 
 ---
 
 ## Technologies Used
 
 - Python
+- FastAPI
 - SQLite
+- SQL
+- Pydantic
+- Uvicorn
+- Git & GitHub
 
 ---
 
@@ -29,6 +36,7 @@ This project performs full CRUD (Create, Read, Update, Delete) operations for ma
 ```bash
 Student-Management-System/
 │
+├── app.py
 ├── main.py
 ├── operations.py
 ├── database.py
@@ -38,25 +46,56 @@ Student-Management-System/
 
 ---
 
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | / | Home Route |
+| GET | /about | About Route |
+| GET | /students | Get All Students |
+| POST | /students | Add New Student |
+| PUT | /students/{name} | Update Student |
+| DELETE | /students/{name} | Delete Student |
+
+---
+
 ## How to Run
 
 1. Clone the repository
 
 ```bash
-git clone <your-repo-link>
+git clone <your-repository-link>
 ```
 
-2. Open project folder
+2. Move into the project folder
 
 ```bash
 cd Student-Management-System
 ```
 
-3. Run the project
+3. Install dependencies
 
 ```bash
-python main.py
+pip install fastapi uvicorn
 ```
+
+4. Run FastAPI server
+
+```bash
+uvicorn app:app --reload
+```
+
+---
+
+## API Documentation
+
+After running the server, open:
+
+```bash
+http://127.0.0.1:8000/docs
+```
+
+FastAPI automatically provides interactive Swagger API documentation for testing endpoints.
 
 ---
 
@@ -66,7 +105,7 @@ python main.py
 |---|---|
 | Create | Add new students |
 | Read | View/Search students |
-| Update | Update student details |
+| Update | Update existing students |
 | Delete | Remove student records |
 
 ---
@@ -75,18 +114,22 @@ python main.py
 
 Through this project, I learned:
 
-- Python functions and modular programming
+- FastAPI fundamentals
+- REST API development
+- CRUD operations using APIs
 - SQLite database integration
-- SQL CRUD operations
-- Project structuring
-- Git and GitHub workflow
+- SQL queries
+- Pydantic models
+- Backend project structure
+- Git & GitHub workflow
 
 ---
 
 ## Future Improvements
 
-- FastAPI integration
-- REST API development
-- Authentication system
-- Web-based frontend
-- PostgreSQL integration
+- Authentication System (JWT)
+- PostgreSQL Integration
+- SQLAlchemy ORM
+- Better Project Architecture
+- Deployment
+- Frontend Integration
